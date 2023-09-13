@@ -1,0 +1,22 @@
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  automate_invite:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: invite-on-label
+        uses: vj-abigo/invite-on-label@v1.4
+        with:
+          organization: Tutorias-programacion-w-Rafa
+          label: invitacion
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          comment: |
+            Hola, @{{ sender }}, bienvenido a la comunidad de Tutorias de programacion w/Rafa.
+            (Siganme en github!)[https://github.com/rafabelts]
+
+        env:
+          INVITE_TOKEN: ${{ secrets.INVITE_TOKEN }}
